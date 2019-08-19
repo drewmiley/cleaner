@@ -38,16 +38,16 @@ fetchEmailsMultipleTimes(5, 65)
     .then(() => console.log(results));
 ```
 
-Confusing to follow! I think it would be much improved by being written in the imperative style. But how can we do this? Starting from scratch is an option, but generally a bad one. Instead, let's try to rewrite it one bit at a time, and see where we get to. 
+Confusing to follow! I think it would be much improved by being written in the imperative style. But how can we do this? Starting from scratch is an option, but generally a bad one. Instead, let's try to rewrite it one bit at a time, and see where we get to.
 
-## Step 1
+## Step 1 - Use of Filter & Map
 
-## Step 2
+## Step 2 - Default Parameters
 
-## Step 3
+## Step 3 - Destructuring Assignments
 
-## Step 4
+## Step 4 - Async/Await
 
-## Step 5
+## Step 5 - Declaration of Constants and Functions
 
 ## Conclusion
