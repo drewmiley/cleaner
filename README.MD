@@ -52,6 +52,11 @@ users => users
 
 ## Step 2 - Default Parameters
 
+Staying in this area of the code, we can see that we declare a constant `minimumAgeForFilter` that is set to a fallback value if none is passed in. This can be tidied up by using a default parameter
+```
+function fetchEmails(minimumAge = 30)
+```
+
 ## Step 3 - Destructuring Assignments
 
 ## Step 4 - Async/Await
