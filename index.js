@@ -8,13 +8,9 @@ function fetchEmails(minimumAge) {
         .then(response => response.results)
         .then(users => {
             const minimumAgeForFilter = minimumAge || 30;
-            let emails = [];
-            for (let i = 0; i < users.length; i++) {
-                if (users[i].dob.age > minimumAgeForFilter) {
-                    emails.push(users[i].email);
-                }
-            }
-            return emails;
+            return users
+              .filter(user => user.dob.age > minimumAgeForFilter)
+              .map(user => user.email);
         })
         .then(emails => results = results.concat(emails));
 }
