@@ -42,6 +42,14 @@ Confusing to follow! I think it would be much improved by being written in the i
 
 ## Step 1 - Use of Filter & Map
 
+The best place to start is by cleaning up the largest chunk of code in the snippet, where we filter our users and map them to their emails. Thinking about the language we used there, wouldn't it be good if there were such a thing as map and filter. The excellent news is there is with ES6 array methods, and we can write this using a readable chaining syntax.
+
+```
+users => users
+  .filter(user => user.dob.age > minimumAgeForFilter)
+  .map(user => user.email)
+```
+
 ## Step 2 - Default Parameters
 
 ## Step 3 - Destructuring Assignments
