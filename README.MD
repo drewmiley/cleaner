@@ -46,8 +46,8 @@ The best place to start is by cleaning up the largest chunk of code in the snipp
 
 ```
 users => users
-  .filter(user => user.dob.age > minimumAgeForFilter)
-  .map(user => user.email)
+    .filter(user => user.dob.age > minimumAgeForFilter)
+    .map(user => user.email)
 ```
 
 ## Step 2 - Default Parameters
@@ -57,9 +57,26 @@ Staying in this area of the code, we can see that we declare a constant `minimum
 function fetchEmails(minimumAge = 30)
 ```
 
-## Step 3 - Destructuring Assignments
+## Step 3 - Async/Await
 
-## Step 4 - Async/Await
+Next thing to look at is all the thens peppered around the code. Structurally, they are there to give the control of synchronicity to our asynchronous js api requests. In order to do this, we have to chain them in a confusing nested strucuture. Nowadays, we can use the Async/Await keywords in order to make this far easier to read
+
+```
+async function fetchEmails(minimumAge) {
+    const response = await fetch('https://randomuser.me/api/?results=10');
+    const jsonResponse = await response.json();
+    const users = jsonResponse.results;
+    const emails = users
+        .filter(user => user.dob.age > minimumAge)
+        .map(user => user.email);
+    results = results.concat(emails);
+    return;
+}
+```
+
+## Step 4 - Destructuring Assignments
+
+## Step 3 - Async/Await
 
 ## Step 5 - Declaration of Constants and Functions
 
