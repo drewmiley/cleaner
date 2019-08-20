@@ -2,22 +2,29 @@ const fetch = require('node-fetch');
 
 let results = [];
 
-function fetchEmails(minimumAge = 30) {
-    return fetch('https://randomuser.me/api/?results=10')
-        .then(response => response.json())
-        .then(response => response.results)
-        .then(users => users
-          .filter(user => user.dob.age > minimumAge)
-          .map(user => user.email)
-        )
-        .then(emails => results = results.concat(emails));
+async function fetchEmails(minimumAge = 30) {
+    const response = await fetch('https://randomuser.me/api/?results=10');
+    const jsonResponse = await response.json();
+    const users = jsonResponse.results;
+    const emails = users
+        .filter(user => user.dob.age > minimumAge)
+        .map(user => user.email);
+    results = results.concat(emails);
+    return;
 }
 
-function fetchEmailsMultipleTimes(timesToCall, minimumAge) {
-    return timesToCall > 0 ?
-        fetchEmails(minimumAge).then(() => fetchEmailsMultipleTimes(timesToCall - 1, minimumAge)) :
-        Promise.resolve();
+async function fetchEmailsMultipleTimes(timesToCall, minimumAge) {
+    await Promise.all(Array.from(Array(timesToCall).keys())
+        .map(async () => {
+            await fetchEmails(minimumAge)
+            return;
+        }));
+    return;
 }
 
-fetchEmailsMultipleTimes(5, 65)
-    .then(() => console.log(results));
+async function run() {
+  await fetchEmailsMultipleTimes(5, 65);
+  console.log(results);
+}
+
+run();
